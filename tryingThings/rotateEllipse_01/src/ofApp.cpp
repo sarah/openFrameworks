@@ -13,6 +13,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
+    // https://www.youtube.com/watch?v=sQrq7S0dP54 (3:21)
+    // this is not where I want to it to be yet but there's the ref
     time = ofGetElapsedTimef();
     ofSetBackgroundColor(0);
     ofNoFill();

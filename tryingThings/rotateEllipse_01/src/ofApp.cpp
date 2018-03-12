@@ -12,30 +12,34 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
+    time = ofGetElapsedTimef();
     ofSetBackgroundColor(0);
     ofNoFill();
-    float sinOfTime = sin(ofGetElapsedTimef()*1.1);
-    float sinOfTimeRemapped = ofMap(sinOfTime,-1,1,0,720);
+    ofSetLineWidth(3);
+    
+    float sinOfTime = sin(time*1.1);
+    float sinOfTimeRemapped = ofMap(sinOfTime,-1,1,0,360 + time);
     float x = ofGetWidth()/2;
     float y = ofGetHeight()/2;
-    
     
     // w/o ofTranslate, rotation happens in top corner
     // so, ofTranslate is setting the origin to the middle
     // of the screen, then we're putting our circle at (0,0)
     ofTranslate(x, y);
+    float width = 100.;
+    float height = 400.;
+    for(int i = 1; i < 7; i ++){
+        ofSetColor(77,44,50);
+        ofRotateY(sinOfTimeRemapped * i);
+
+        ofDrawEllipse(0, 0, width/i,height/i);
+        ofRotateY(sinOfTimeRemapped * 0.5);
+        ofDrawEllipse(0, 0, 80,300);
+    }
     
     // TODO how to continually rotate in a circle instead
     // of going to 720 or some n and then restarting
-    ofRotateY(sinOfTimeRemapped);
-    
-    // ofDrawCircle(0, 0, 130);
-    
-    // a circle is easier to rotate than an ellipse.
-    // b/c 360 and ellipse not?
-    ofDrawEllipse(0, 0, 100,400);
-    ofRotateY(sinOfTimeRemapped * 0.5);
-    ofDrawEllipse(0, 0, 80,300);
 }
 
 //--------------------------------------------------------------

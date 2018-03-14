@@ -15,13 +15,13 @@ void ofApp::draw(){
     
     // https://www.youtube.com/watch?v=sQrq7S0dP54 (3:21)
     // this is not where I want to it to be yet but there's the ref
-    time = ofGetElapsedTimef();
+    float time = ofGetElapsedTimef();
     ofSetBackgroundColor(0);
     ofNoFill();
-    ofSetLineWidth(3);
+    ofSetLineWidth(7);
     
     float sinOfTime = sin(time*1.1);
-    float sinOfTimeRemapped = ofMap(sinOfTime,-1,1,0,360 + time);
+    float sinOfTimeRemapped = ofMap(sinOfTime,-1,1,0,360);
     float x = ofGetWidth()/2;
     float y = ofGetHeight()/2;
     
@@ -31,13 +31,18 @@ void ofApp::draw(){
     ofTranslate(x, y);
     float width = 100.;
     float height = 400.;
-    for(int i = 1; i < 7; i ++){
-        ofSetColor(77,44,50);
-        ofRotateY(sinOfTimeRemapped * i);
-
-        ofDrawEllipse(0, 0, width/i,height/i);
-        ofRotateY(sinOfTimeRemapped * 0.5);
-        ofDrawEllipse(0, 0, 80,300);
+    for(int i = 1; i < 6; i ++){
+        ofSetColor(77,44,50, 50);
+        for(int j = 0; j < 8; j++){
+           // draw multiple elipses on top of each other
+            // vary color & alpha
+            ofPushMatrix(); // TODO understand better
+            // sin(something + phase); // pseudo-code for phase
+            // ofRotate behaves "sin-y" so you can add phase
+            ofRotateY((time * 100) + (i * 60)); // ofRotate takes degrees not radians
+            ofDrawEllipse(j*0.001, 0, width/i,height/i);
+            ofPopMatrix();
+        }
     }
     
     // TODO how to continually rotate in a circle instead

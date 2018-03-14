@@ -13,7 +13,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     float t = ofGetElapsedTimef() * .2;
-    float angle = ofMap(t, 0, 1, 0, 360);
+    float angle = ofMap(t, 0, 1, 0, TWO_PI);
     float radius = ofMap( 3 * cos(3 * angle), -1, 1, 0, 100);
     ofPoint center(400,400);
     

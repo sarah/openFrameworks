@@ -28,12 +28,17 @@ void ofApp::draw(){
     // w/o ofTranslate, rotation happens in top corner
     // so, ofTranslate is setting the origin to the middle
     // of the screen, then we're putting our circle at (0,0)
+    // TODO
+    // * colors -- each ring is a diff color.
+    // * my rings aren't in the same positions as the rings on the whitney
+    // * the whitney rings have a bit of a glow
+    // * if I do those 3 things it would be neat to integrate Nitcha's work
     ofTranslate(x, y);
     float width = 100.;
     float height = 400.;
     for(int i = 1; i < 6; i ++){
         ofSetColor(77,44,50, 50);
-        for(int j = 0; j < 8; j++){
+        for(int j = 0; j < 7; j++){
            // draw multiple elipses on top of each other
             // vary color & alpha
             ofPushMatrix(); // TODO understand better

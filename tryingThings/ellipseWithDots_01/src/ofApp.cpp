@@ -19,13 +19,18 @@ void ofApp::draw(){
     float radiusx = 50 + 50 * sin(time);
     float radiusy = 300;
     
-    for (int i = 0; i < 100; i++){
-        xOrig = ofMap(i, 0, 100, ofGetWidth()/2, mouseX);
-        cout << mouseX << endl;
+    // this loop draws a sin-y ellipse-y line across the stage
+    // b/c of sin it widens and narrows much like a slinky
+    // adding that sin(i) to 1000 gives it a weird jaggy edge at the top 
+    for (int i = 0; i < 1000; i++){
+        // sin just returns -1 to 1, so amplify it
+        float var = sin(time * 0.3) * 1000;
+        cout << var << endl;
+        xOrig = ofMap(i, 0, 100, ofGetWidth(), var);
         float angle = ofMap(i,0,100, 0, TWO_PI) + PI/2;
         float x = xOrig + radiusx * cos(angle);
         float y = yOrig + radiusy * sin(angle);
-        ofDrawCircle(x,y,3);
+        ofDrawCircle(x,y,2);
     }
 }
 

@@ -20,20 +20,15 @@ void ofApp::draw(){
     float dotCount = 100; // when higher, dots look like lines
     float numEllipses = 4;
     float dotRadius = 2;
-    
-
 
     // this loop controls how many ellipses are drawn
     for(int i = 0; i < numEllipses; i++){
 
-        // trying to offset ellipses from each other on the x & y
-        // these don't look great but idc for now
-        float radiusx = 100 * sin(time) - i;
+        // my goal is to draw these ellipses at an offset to each other.
+        // by passing a phase into sin (+ i*something) it draws them in a time offset
+        float radiusx = 100 * sin(time + i*0.5);
         float radiusy = 300 - (i* 17.7);
         
-        // my goal is to draw these ellipses at an offset to each other.
-        // what needs to change?
-        // does it mean moving at different rates? starting at different times?
         // this loops draws dots in the shape of an ellipse
         for (int j = 0; j < dotCount; j++){
             xOrig = ofMap(j, 0, 100, ofGetWidth()/2, maxX);

@@ -43,37 +43,21 @@ void ofApp::update(){
 	
 	// (2) check for collision, and trigger sounds:
 	// horizontal collisions:
-	if (px < 0){
-		px = 0;
-		vx *= -1;
-//        dog.play();
-	} else if (px > ofGetWidth()){
-		px = ofGetWidth();
-		vx *= -1;
-//        ow.play();
-//        purr.play();
-	}
+
 	// vertical collisions:
-	if (py < 0 ){
-		py = 0;
-		vy *= -1;
+    if(! purr.isPlaying()){
         purr.play();
+    }
+    
 //        rooster.play();
-	} else if (py > ofGetHeight()){
-		py = ofGetHeight();
-		vy *= -1;
-//        beat.play();
-	}
-	// (3) slow down velocity:
-	vx 	*= 0.996f;
-	vy 	*= 0.996f;
+	
 
 	// (4) we use velocity for volume of the samples:
-	float vel = sqrt(vx*vx + vy*vy);
+	
 //    ow.setVolume(MIN(vel/5.0f, 1));
 //    beat.setVolume(MIN(vel/5.0f, 1));
 //    dog.setVolume(MIN(vel/5.0f, 1));
-    purr.setVolume(MIN(vel/5.0f, 1));
+//    purr.setVolume(MIN(vel/5.0f, 1));
 //    rooster.setVolume(MIN(vel/5.0f, 1));
 
 	// (5) grab the fft, and put in into a "smoothed" array,

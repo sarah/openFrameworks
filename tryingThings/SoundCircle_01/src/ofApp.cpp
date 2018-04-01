@@ -5,19 +5,8 @@
 void ofApp::setup(){	 
 
 	// load in sounds:
-//    beat.load("sounds/jdee_beat.mp3");
-//    ow.load("sounds/ow.mp3");
-//    dog.load("sounds/dog.mp3");
-//    rooster.load("sounds/rooster.mp3");
-    // this works, my purr doesn't, must be my purr track somehow
     purr.load("sounds/max.mp3");
 	
-	// we will bounce a circle using these variables:
-//    px = 300;
-//    py = 300;
-//    vx = 0;
-//    vy = 0;    
-//
 	// the fft needs to be smoothed out, so we create an array of floats
 	// for that purpose:
 	fftSmoothed = new float[8192];
@@ -32,34 +21,15 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	
-	ofBackground(80,80,20);
+	ofBackground(0);
 
 	// update the sound playing system:
 	ofSoundUpdate();	
 	
-	// (1) we increase px and py by adding vx and vy
-	px += vx;
-	py += vy;
-	
-	// (2) check for collision, and trigger sounds:
-	// horizontal collisions:
-
-	// vertical collisions:
     if(! purr.isPlaying()){
         purr.play();
     }
     
-//        rooster.play();
-	
-
-	// (4) we use velocity for volume of the samples:
-	
-//    ow.setVolume(MIN(vel/5.0f, 1));
-//    beat.setVolume(MIN(vel/5.0f, 1));
-//    dog.setVolume(MIN(vel/5.0f, 1));
-//    purr.setVolume(MIN(vel/5.0f, 1));
-//    rooster.setVolume(MIN(vel/5.0f, 1));
-
 	// (5) grab the fft, and put in into a "smoothed" array,
 	//		by taking maximums, as peaks and then smoothing downward
 	float * val = ofSoundGetSpectrum(nBandsToGet);		// request 128 values for fft
@@ -72,25 +42,23 @@ void ofApp::update(){
 		if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
         cout << fftSmoothed[i] << endl;
 	}
-
-
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
 	
-//    ofEnableAlphaBlending();
-//        ofSetColor(255,255,255,100);
-//        ofDrawRectangle(100,ofGetHeight()-300,5*128,200);
-//    ofDisableAlphaBlending();
-//
 	// draw the fft resutls:
 	ofSetColor(255,255,255,255);
-	
+    ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
 	float width = (float)(5*128) / nBandsToGet;
 	for (int i = 0;i < nBandsToGet; i++){
-        ofDrawCircle(100,100,(fftSmoothed[i]*200));
+
+            ofEnableAlphaBlending();
+                ofSetColor(255,255,255,20);
+                ofDrawCircle(0,0,fftSmoothed[i]*200);
+            ofDisableAlphaBlending();
+//        ofDrawCircle(100,100,(fftSmoothed[i]*200));
 	}
 	
 	// finally draw the playing circle:

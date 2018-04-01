@@ -22,6 +22,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+//    http://ronsen.org/purrfectsounds/
         ofSoundPlayer       purr; // max
         ofSoundPlayer purr2;     // brucewayne
 		float 				* fftSmoothed;

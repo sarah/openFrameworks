@@ -31,10 +31,7 @@ void ofApp::update(){
     if(! purr.isPlaying()){
         purr.play();
     }
-//
-//    if(! purr2.isPlaying()){
-//        purr2.play();
-//    }
+
     
 	// (5) grab the fft, and put in into a "smoothed" array,
 	//		by taking maximums, as peaks and then smoothing downward

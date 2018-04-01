@@ -6,6 +6,8 @@ void ofApp::setup(){
 
 	// load in sounds:
     purr.load("sounds/max.mp3");
+    purr2.load("sounds/brucewayne.mp3");
+    glow.load("image.png");
 	
 	// the fft needs to be smoothed out, so we create an array of floats
 	// for that purpose:
@@ -25,10 +27,14 @@ void ofApp::update(){
 
 	// update the sound playing system:
 	ofSoundUpdate();	
-	
+//
     if(! purr.isPlaying()){
         purr.play();
     }
+//
+//    if(! purr2.isPlaying()){
+//        purr2.play();
+//    }
     
 	// (5) grab the fft, and put in into a "smoothed" array,
 	//		by taking maximums, as peaks and then smoothing downward
@@ -40,20 +46,22 @@ void ofApp::update(){
 		
 		// take the max, either the smoothed or the incoming:
 		if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
-        cout << fftSmoothed[i] << endl;
 	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	// draw the fft resutls:
-	ofSetColor(255,255,255,255);
+    ofSetColor(255);
     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
 	float width = (float)(5*128) / nBandsToGet;
 	for (int i = 0;i < nBandsToGet; i++){
         ofEnableAlphaBlending();
-            ofSetColor(255,255,255, 100);
-            ofDrawCircle(0,0,fftSmoothed[i]*200);
+            ofSetColor(255,255,255, 40);
+            ofDrawCircle(0,0,fftSmoothed[i]*ofGetWidth());
+//        glow.resize(fftSmoothed[i]*ofGetWidth(), fftSmoothed[i]*ofGetHeight());
+//            glow.draw(0 , 0 );
+//        cout << mouseX << endl;
         ofDisableAlphaBlending();
 	}
 }

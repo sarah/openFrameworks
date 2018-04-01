@@ -22,17 +22,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		ofSoundPlayer 		beat;
-		ofSoundPlayer		ow;
-		ofSoundPlayer		dog;
-		ofSoundPlayer		rooster;
-        ofSoundPlayer       purr;
-
+        ofSoundPlayer       purr; // max
+        ofSoundPlayer purr2;     // brucewayne
 		float 				* fftSmoothed;
-		// we will draw a rectangle, bouncing off the wall:
-		float 				px, py, vx, vy;
-
 		int nBandsToGet;
-		float prevx, prevy;
+    
+        ofImage glow;
+		
 };
 

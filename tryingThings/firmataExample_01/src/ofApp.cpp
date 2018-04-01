@@ -109,8 +109,13 @@ void ofApp::updateArduino(){
 	ard.update();
 	
 	// do not send anything until the arduino has been set up
+    // right this is using pin 11, which has been set to analog output. so theoretically
+    // if i map the values of the purr to 0 to 255 somehow
+    // then this is what I want to control. Let's make another one!
 	if (bSetupArduino) {
         // fade the led connected to pin D11
+        // pwm goes from 0 to 255
+        cout << (int)(128 + 128 * sin(ofGetElapsedTimef())) << endl;
 		ard.sendPwm(11, (int)(128 + 128 * sin(ofGetElapsedTimef())));   // pwm...
 	}
 

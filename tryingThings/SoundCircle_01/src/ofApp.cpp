@@ -46,30 +46,16 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
-	
 	// draw the fft resutls:
 	ofSetColor(255,255,255,255);
     ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
 	float width = (float)(5*128) / nBandsToGet;
 	for (int i = 0;i < nBandsToGet; i++){
-
-            ofEnableAlphaBlending();
-                ofSetColor(255,255,255,20);
-                ofDrawCircle(0,0,fftSmoothed[i]*200);
-            ofDisableAlphaBlending();
-//        ofDrawCircle(100,100,(fftSmoothed[i]*200));
+        ofEnableAlphaBlending();
+            ofSetColor(255,255,255, 100);
+            ofDrawCircle(0,0,fftSmoothed[i]*200);
+        ofDisableAlphaBlending();
 	}
-	
-	// finally draw the playing circle:
-
-//    ofEnableAlphaBlending();
-//        ofSetColor(255,255,255,20);
-//        ofDrawCircle(px, py,50);
-//    ofDisableAlphaBlending();
-//
-//    ofSetHexColor(0xffffff);
-//    ofDrawCircle(px, py,8);
 }
 
 

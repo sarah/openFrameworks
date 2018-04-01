@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    grabber.initGrabber(640, 480);
+    grabber.initGrabber(1024, 768);
     
 }
 

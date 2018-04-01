@@ -46,11 +46,11 @@ void ofApp::update(){
 	if (px < 0){
 		px = 0;
 		vx *= -1;
-		dog.play();
+//        dog.play();
 	} else if (px > ofGetWidth()){
 		px = ofGetWidth();
 		vx *= -1;
-        ow.play();
+//        ow.play();
 //        purr.play();
 	}
 	// vertical collisions:
@@ -62,7 +62,7 @@ void ofApp::update(){
 	} else if (py > ofGetHeight()){
 		py = ofGetHeight();
 		vy *= -1;
-		beat.play();
+//        beat.play();
 	}
 	// (3) slow down velocity:
 	vx 	*= 0.996f;
@@ -70,11 +70,11 @@ void ofApp::update(){
 
 	// (4) we use velocity for volume of the samples:
 	float vel = sqrt(vx*vx + vy*vy);
-	ow.setVolume(MIN(vel/5.0f, 1));
-	beat.setVolume(MIN(vel/5.0f, 1));
-	dog.setVolume(MIN(vel/5.0f, 1));
+//    ow.setVolume(MIN(vel/5.0f, 1));
+//    beat.setVolume(MIN(vel/5.0f, 1));
+//    dog.setVolume(MIN(vel/5.0f, 1));
     purr.setVolume(MIN(vel/5.0f, 1));
-	rooster.setVolume(MIN(vel/5.0f, 1));
+//    rooster.setVolume(MIN(vel/5.0f, 1));
 
 	// (5) grab the fft, and put in into a "smoothed" array,
 	//		by taking maximums, as peaks and then smoothing downward
@@ -108,7 +108,7 @@ void ofApp::draw(){
 	for (int i = 0;i < nBandsToGet; i++){
 		// (we use negative height here, because we want to flip them
 		// because the top corner is 0,0)
-		ofDrawRectangle(100+i*width,ofGetHeight()-100,width,-(fftSmoothed[i] * 200));
+//        ofDrawRectangle(100+i*width,ofGetHeight()-100,width,-(fftSmoothed[i] * 200));
         ofDrawCircle(100,100,(fftSmoothed[i]*200));
 	}
 	

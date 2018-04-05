@@ -153,7 +153,7 @@ void ofApp::updateArduino(){
 //        cout << (int)(128 + 128 * sin(ofGetElapsedTimef())) << endl;
 //        ard.sendPwm(11, (int)(128 + 128 * sin(ofGetElapsedTimef())));   // pwm...
         
-        int catBand = 4; // 4-12 looks good
+        int catBand = 8; // 4-12 looks good
         // ok let's try to map those sounds
         for (int i = 0;i < nBandsToGet; i++){
             if (i == catBand){

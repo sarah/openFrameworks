@@ -82,6 +82,7 @@ void ofApp::update(){
     
     // (5) grab the fft, and put in into a "smoothed" array,
     //        by taking maximums, as peaks and then smoothing downward
+    // TODO understand this better
     float * val = ofSoundGetSpectrum(nBandsToGet);        // request 128 values for fft
     for (int i = 0;i < nBandsToGet; i++){
         
@@ -149,8 +150,24 @@ void ofApp::updateArduino(){
 	if (bSetupArduino) {
         // fade the led connected to pin D11
         // pwm goes from 0 to 255
-        cout << (int)(128 + 128 * sin(ofGetElapsedTimef())) << endl;
-		ard.sendPwm(11, (int)(128 + 128 * sin(ofGetElapsedTimef())));   // pwm...
+//        cout << (int)(128 + 128 * sin(ofGetElapsedTimef())) << endl;
+//        ard.sendPwm(11, (int)(128 + 128 * sin(ofGetElapsedTimef())));   // pwm...
+        
+        int catBand = 4; // 4-12 looks good
+        // ok let's try to map those sounds
+        for (int i = 0;i < nBandsToGet; i++){
+            if (i == catBand){
+            int output = ofMap(fftSmoothed[i], 0,0.01,0,255, true);
+                cout << "output: " << output << endl;
+                ard.sendPwm(11, output);   // pwm...
+            }
+           
+        }
+        
+        // end of attempt
+        
+        
+        
 	}
 
 }

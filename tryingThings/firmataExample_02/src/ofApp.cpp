@@ -72,6 +72,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    cout << "in update" << endl;
 
 	updateArduino();
     ofSoundUpdate();
@@ -96,6 +97,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::setupArduino(const int & version) {
+    cout << "in setupArduino " << endl;
 	
 	// remove listener because we don't need it anymore
 	ofRemoveListener(ard.EInitialized, this, &ofApp::setupArduino);
